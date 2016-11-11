@@ -104,6 +104,12 @@ class Calc():
 c = Calc()
 
 def loop(marker):
+    """
+    Iterate over input and either evaluate the result or output a
+    readable error in the case of a parsing issue.
+    Beyond this, capture keyboard interrupts to avoid an unclean exit.
+    """
+
     print(marker, end='', flush=True)
     try:
         for line in fileinput.input():
