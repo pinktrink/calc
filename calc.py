@@ -1,6 +1,7 @@
 """
-This is the main package for Calc. It contains the primary class that
-will implement different features of the calculator.
+Main package for calc. It contains the primary class that will
+implement different features of the calculator, as well as a few helper
+functions.
 The only external dependency here is pyparsing.
 """
 
@@ -22,8 +23,8 @@ from pyparsing import (
 
 def calcLang():
     """
-    This function defines the overall language that will be used to
-    to represent mathematical logic.
+    Define the overall language that will be used to represent
+    mathematical logic.
     Thanks to pyparsing this is defined in a pseudo Backus-Naur form.
     """
 
@@ -45,17 +46,16 @@ def calcLang():
 
 class Calc():
     """
-    This class defines the overall structure for operations and logical
-    execution. We need evaluation to be recursive so that we can
-    continuously parse the string that is input and generate a result.
+    Overall structure for operations and logical execution within Calc.
+    We need evaluation to be recursive so that we can continuously parse
+    the string that is input and generate a result.
     """
 
     op_order = ['^', '*', '/', '+', '-']
 
     def evaluate(self, stack, op_index=0):
         """
-        This function recursively evaluates the stack of logic to
-        process it.
+        Recursively evaluate the stack of logic to process it.
         First we look for ^ and then slice what is before and after it
         out of the array. We then send it to evaluate_expr which will
         return the result of the individual expression. We then replace
@@ -86,8 +86,8 @@ class Calc():
 
     def evaluate_expr(self, stack):
         """
-        This function simply reduces the 3 element stack down to 1 by
-        performing the operation contained in [1] on [0] and [2].
+        Reduce the 3 element stack down to 1 by performing the operation
+        contained in [1] on [0] and [2].
         """
 
         if stack[1] == '^':
