@@ -54,7 +54,7 @@ class Calc():
         """
         This function recursively evaulates the stack of logic to
         process it.
-        First we look for ^ and the slice what is before and after it
+        First we look for ^ and then slice what is before and after it
         out of the array. We then send it to evaluate_expr which will
         return the result of the individual expression. We then replace
         the aforementioned slice with the result.
