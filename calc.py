@@ -50,7 +50,9 @@ class Calc():
     continuously parse the string that is input and generate a result.
     """
 
-    def evaluate(self, stack, sign='^'):
+    opOrder = ['^', '*', '/', '+', '-']
+
+    def evaluate(self, stack, op_index=0):
         """
         This function recursively evaulates the stack of logic to
         process it.
@@ -65,15 +67,20 @@ class Calc():
         if len(stack) == 1:
             return stack[0]
 
-        for i, n in enumerate(stack):
-            if n == sign:
-                stack[i - 1:i + 2] = self.evaluateExpr(stack[i - 1:i + 2])
-                return self.evaluate(stack, sign)
+        hitIndex = 0
 
-        self.evaluate(stack, sign='*')
-        self.evaluate(stack, sign='/')
-        self.evaulate(stack, sign='+')
-        self.evaluate(stack, sign='-')
+        for i, n in enumerate(stack):
+            if n == self.opOrder[op_index]:
+                hitIndex = i
+                break
+
+        # This is fine because hitIndex will never be 0 if the condition
+        # inside the loop was satisfied.
+        if not hitIndex:
+            return self.evaluate(stack, op_index=op_index + 1)
+        else:
+            stack[i - 1:i + 2] = self.evaluateExpr(stack[i - 1:i + 2])
+            return self.evaluate(stack, op_index)
 
     def evaluateExpr(self, stack):
         """
@@ -94,4 +101,4 @@ class Calc():
 
 if __name__ == '__main__':
     result = calcLang().parseString(' '.join(sys.argv[1:]))
-    Calc().evaluate(result)
+    print(Calc().evaluate(result))
