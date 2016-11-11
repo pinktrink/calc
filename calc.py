@@ -76,7 +76,6 @@ class Calc():
         self.evaluate(stack, sign='-')
 
     def evaluateExpr(self, stack):
-        print(stack)
         if stack[1] == '^':
             return [stack[0] ** stack[2]]
         elif stack[1] == '*':
