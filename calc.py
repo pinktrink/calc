@@ -50,7 +50,7 @@ class Calc():
     continuously parse the string that is input and generate a result.
     """
 
-    opOrder = ['^', '*', '/', '+', '-']
+    op_order = ['^', '*', '/', '+', '-']
 
     def evaluate(self, stack, op_index=0):
         """
@@ -70,7 +70,7 @@ class Calc():
         hitIndex = 0
 
         for i, n in enumerate(stack):
-            if n == self.opOrder[op_index]:
+            if n == self.op_order[op_index]:
                 hitIndex = i
                 break
 
@@ -79,10 +79,10 @@ class Calc():
         if not hitIndex:
             return self.evaluate(stack, op_index=op_index + 1)
         else:
-            stack[i - 1:i + 2] = self.evaluateExpr(stack[i - 1:i + 2])
+            stack[i - 1:i + 2] = self.evaluate_expr(stack[i - 1:i + 2])
             return self.evaluate(stack, op_index)
 
-    def evaluateExpr(self, stack):
+    def evaluate_expr(self, stack):
         """
         This function simply reduces the 3 element stack down to 1 by
         performing the operation contained in [1] on [0] and [2].
