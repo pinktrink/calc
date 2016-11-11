@@ -18,10 +18,6 @@ from pyparsing import (
 )
 
 
-# Define a basic language for pyparsing to parse, so that we can
-# properly parse any incoming logic.
-
-
 def calcLang():
     """
     This function defines the overall language that will be used to
