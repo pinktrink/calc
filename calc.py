@@ -76,6 +76,11 @@ class Calc():
         self.evaluate(stack, sign='-')
 
     def evaluateExpr(self, stack):
+        """
+        This function simply reduces the 3 element stack down to 1 by
+        performing the operation contained in [1] on [0] and [2].
+        """
+
         if stack[1] == '^':
             return [stack[0] ** stack[2]]
         elif stack[1] == '*':
