@@ -14,6 +14,7 @@ from pyparsing import (
     Forward,
     Optional,
     ZeroOrMore,
+    ParseException,
     nums,
     oneOf
 )
@@ -104,10 +105,17 @@ c = Calc()
 
 def loop(marker):
     print(marker, end='', flush=True)
-    for line in fileinput.input():
-        result = calcLang().parseString(line)
-        print(c.evaluate(result))
-        print(marker, end='', flush=True)
+    try:
+        for line in fileinput.input():
+            try:
+                result = calcLang().parseString(line)
+                print(c.evaluate(result))
+            except ParseException:
+                print('Unable to parse input.')
+
+            print(marker, end='', flush=True)
+    except KeyboardInterrupt:
+        sys.exit()
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
@@ -118,5 +126,8 @@ if __name__ == '__main__':
         else:
             loop('')
     else:
-        result = calcLang().parseString(' '.join(sys.argv[1:]))
-        print(c.evaluate(result))
+        try:
+            result = calcLang().parseString(' '.join(sys.argv[1:]))
+            print(c.evaluate(result))
+        except ParseException:
+            print('Unable to parse input.')
