@@ -5,6 +5,7 @@ The only external dependency here is pyparsing.
 """
 
 import sys
+import fileinput
 
 from pyparsing import (
     Combine,
@@ -99,6 +100,23 @@ class Calc():
         elif stack[1] == '-':
             return [stack[0] - stack[2]]
 
+c = Calc()
+
+def loop(marker):
+    print(marker, end='', flush=True)
+    for line in fileinput.input():
+        result = calcLang().parseString(line)
+        print(c.evaluate(result))
+        print(marker, end='', flush=True)
+
 if __name__ == '__main__':
-    result = calcLang().parseString(' '.join(sys.argv[1:]))
-    print(Calc().evaluate(result))
+    if len(sys.argv) == 1:
+        if sys.__stdin__.isatty():
+            print('Calc version 0011000000101110001100010010111000110000.')
+            print('Written by Eric Kever.')
+            loop('> ')
+        else:
+            loop('')
+    else:
+        result = calcLang().parseString(' '.join(sys.argv[1:]))
+        print(c.evaluate(result))
