@@ -52,7 +52,7 @@ class Calc():
 
     def evaluate(self, stack, op_index=0):
         """
-        This function recursively evaulates the stack of logic to
+        This function recursively evaluates the stack of logic to
         process it.
         First we look for ^ and then slice what is before and after it
         out of the array. We then send it to evaluate_expr which will
