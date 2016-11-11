@@ -75,6 +75,8 @@ class Calc():
         # This is fine because hitIndex will never be 0 if the condition
         # inside the loop was satisfied.
         if not hitIndex:
+            # We will never reach a point where op_index is out of
+            # bounds, so there's no need to check.
             return self.evaluate(stack, op_index=op_index + 1)
         else:
             stack[i - 1:i + 2] = self.evaluate_expr(stack[i - 1:i + 2])
