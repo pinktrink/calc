@@ -34,6 +34,8 @@ def calcLang():
     # and followup number
     number = Combine(Word('+-' + nums, nums) +
                      Optional(point + Optional(Word(nums)))).setParseAction(
+                         # This guy right here just converts the string to a
+                         # float.
                          lambda n: float(n[0])
                      )
     operation = oneOf('+ - / * ^')
@@ -57,7 +59,7 @@ class Calc():
         This function recursively evaulates the stack of logic to
         process it.
         First we look for ^ and the slice what is before and after it
-        out of the array. We then send it to evaluateExpr which will
+        out of the array. We then send it to evaluate_expr which will
         return the result of the individual expression. We then replace
         the aforementioned slice with the result.
         We do this then for '*', '/', '+', and '-', until the stack
