@@ -82,7 +82,7 @@ class Calc():
             return self.evaluate(stack, op_index=op_index + 1)
         else:
             stack[i - 1:i + 2] = self.evaluate_expr(stack[i - 1:i + 2])
-            return self.evaluate(stack, op_index)
+            return self.evaluate(stack, op_index=op_index)
 
     def evaluate_expr(self, stack):
         """
