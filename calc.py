@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Main package for calc. It contains the primary class that will
 implement different features of the calculator, as well as a few helper
