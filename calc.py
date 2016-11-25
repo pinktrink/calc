@@ -117,7 +117,7 @@ def loop(marker):
         for line in fileinput.input():
             try:
                 result = calcLang().parseString(line)
-                print(c.evaluate(result))
+                print(c.evaluate(result).rstrip('0').rstrip('.'))
             except ParseException:
                 print('Unable to parse input.')
 
@@ -136,6 +136,6 @@ if __name__ == '__main__':
     else:
         try:
             result = calcLang().parseString(' '.join(sys.argv[1:]))
-            print(c.evaluate(result))
+            print(c.evaluate(result).rstrip('0').rstrip('.'))
         except ParseException:
             print('Unable to parse input.')
